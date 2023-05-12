@@ -24,13 +24,9 @@ class ImageTesting : AppCompatActivity(),ImageListener {
         imageView =findViewById(R.id.imageView)
 
         btnCamera.setOnClickListener {
-            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q)
                  takeimage.getImageFromCamera()
-            else
-            {
-
-            }
         }
+
 
     }
 

@@ -14,6 +14,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
+import java.io.File
 
 class TakeImage(private val activity: AppCompatActivity, private val listener: ImageListener) {
 
@@ -40,16 +42,16 @@ class TakeImage(private val activity: AppCompatActivity, private val listener: I
 
             }
             if (allPermssionAllow) {
-                Toast.makeText(activity, "all permission allow", Toast.LENGTH_SHORT).show()
+             //   Toast.makeText(activity, "all permission allow", Toast.LENGTH_SHORT).show()
                 listener.allPermissionAllowed()
             } else {
                 // openCamera()
                 listener.permissionDeny(onePermissionNotALlowed)
-                Toast.makeText(
+               /* Toast.makeText(
                     activity,
                     "all permission not  allow" + onePermissionNotALlowed,
                     Toast.LENGTH_SHORT
-                ).show()
+                ).show()*/
 
             }
 
@@ -97,8 +99,17 @@ class TakeImage(private val activity: AppCompatActivity, private val listener: I
 
     fun getImageFromCamera() {
         if (checkPermissionBeforeAction()) {
-            imageUri = getImageUriTosaveCameraImage()
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q)
+            {
+                imageUri = getImageUriTosaveCameraImage()
+            }else
+            {
+                imageUri=getFilePath()
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+
+
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
             intentByUri.launch(intent)
             // intentByUri.launch()
@@ -136,6 +147,29 @@ class TakeImage(private val activity: AppCompatActivity, private val listener: I
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
             contentValues
         )
+    }
+
+    /**
+     * below 26 this code use
+     */
+    private fun getFilePath():Uri?
+    {
+
+        val storageDir: File? = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)//activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+
+        val image = File.createTempFile(
+            "aaksh",  /* prefix */
+            ".jpg",  /* suffix */
+            storageDir/* directory */
+        )
+
+        val swatchImageUri = FileProvider.getUriForFile(
+            activity,
+            BuildConfig.APPLICATION_ID + ".provider",
+            image
+        )
+        return swatchImageUri
+
     }
 
     /**
