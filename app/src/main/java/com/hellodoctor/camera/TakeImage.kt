@@ -17,7 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import java.io.File
 
-class TakeImage(private val activity: AppCompatActivity, private val listener: ImageListener) {
+public class TakeImage(private val activity: AppCompatActivity, private val listener: ImageListener) {
 
     private var onePermissionNotALlowed: String = ""
     private var singlePermsiion: String = ""
