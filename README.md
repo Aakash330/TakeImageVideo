@@ -1,7 +1,8 @@
 # TakeImageVideo
 
 all maven
-allprojects {
+
+allprojects{
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
