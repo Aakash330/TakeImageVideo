@@ -38,7 +38,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.hellodoctor.camera.provider"
+            android:authorities="com.photovideo.camera.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

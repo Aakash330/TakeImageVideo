@@ -1,4 +1,4 @@
-package com.hellodoctor.camera
+package com.photovideo.camera
 
 import android.annotation.SuppressLint
 import android.content.ContentValues

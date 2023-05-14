@@ -1,9 +1,7 @@
-package com.hellodoctor.camera
+package com.photovideo.camera
 
 import android.annotation.SuppressLint
-import android.graphics.Camera
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
