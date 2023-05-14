@@ -14,5 +14,5 @@ allprojects{
   add dependency
   
   dependencies {
-	        implementation 'com.github.Aakash330:TakeImageVideo:Tag'
+	        implementation 'com.github.Aakash330:TakeImageVideo:1.0.2'
 	}
