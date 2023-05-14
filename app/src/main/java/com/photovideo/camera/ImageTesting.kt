@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import com.photovideo.cameragallery.ImageListener
+import com.photovideo.cameragallery.TakeImage
 
-class ImageTesting : AppCompatActivity(),ImageListener {
-    private lateinit var takeimage:TakeImage
+class ImageTesting : AppCompatActivity(), ImageListener {
+    private lateinit var takeimage: TakeImage
     private lateinit var btnCamera: Button
     private lateinit var imageView: ImageView
 

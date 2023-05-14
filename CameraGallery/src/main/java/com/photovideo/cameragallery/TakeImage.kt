@@ -1,4 +1,4 @@
-package com.photovideo.camera
+package com.photovideo.cameragallery
 
 import android.content.ContentValues
 import android.content.Intent
@@ -162,7 +162,7 @@ public class TakeImage(private val activity: AppCompatActivity, private val list
 
         val swatchImageUri = FileProvider.getUriForFile(
             activity,
-            BuildConfig.APPLICATION_ID + ".provider",
+            activity.packageName + ".provider",
             image
         )
         return swatchImageUri
@@ -231,6 +231,7 @@ public class TakeImage(private val activity: AppCompatActivity, private val list
         private const val CAMERA = android.Manifest.permission.CAMERA
         private const val WRITE = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         private const val READ = android.Manifest.permission.READ_EXTERNAL_STORAGE
+
         private const val READMEDIAIMAGE = android.Manifest.permission.READ_MEDIA_IMAGES
     }
 
