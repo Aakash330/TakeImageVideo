@@ -112,9 +112,35 @@ public class TakeImage(private val activity: AppCompatActivity, private val list
             // intentByUri.launch()
         }
     }
+    fun getVideoFromCamera() {
+        if (checkPermissionBeforeAction()) {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q)
+            {
+                imageUri = getImageUriTosaveCameraImage()
+            }else
+            {
+                imageUri=getFilePath()
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+
+
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+            intentByUri.launch(intent)
+            // intentByUri.launch()
+        }
+    }
 
     fun getImageFromGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        // intent.action="image/*"
+        intentByUri.launch(intent)
+    }
+
+    fun getVideoFromGallery()
+    {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
+        // intent.action="image/*"
         intentByUri.launch(intent)
     }
 
